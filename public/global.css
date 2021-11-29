@@ -4,7 +4,7 @@ body {
 	width: 100%;
 	height: 100%;
 
-	font-size: 16px;
+	font-size: 23px;
 }
 
 body {
@@ -37,11 +37,10 @@ input,
 button,
 select,
 textarea {
-	font-family: 1rem;
 	font-size: inherit;
-	-webkit-padding: 0.4em 0;
+	-webkit-padding: 0.4em 0em;
 	padding: 0.4em;
-	margin: 0 0 0.5em 0;
+	margin: 0 0 1em 0;
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	border-radius: 2px;
@@ -73,7 +72,8 @@ button:focus {
 
 .form {
 	margin: 0 auto 10rem auto;
-	width: 12rem;
+	width: 335px; /* 375-(20px x 2) */
+	padding-bottom: 40rem;
 }
 /* ---- collapse ---- */
 /* .form {
@@ -88,8 +88,7 @@ button:focus {
 
 main {
 	text-align: center;
-	padding: 1em;
-	max-width: 240px;
+	max-width: 335px; /* see above */
 	margin: 0 auto;
 }
 
@@ -102,7 +101,11 @@ main {
 /* --------- from: Sentence ------------------------- */
 
 h1 {
-	font-size: 22px;
+	font-size: 1.4rem;
+	padding-bottom: 2rem;
+}
+h3 {
+	font-size: 1.2rem;
 }
 
 /* --------- from: InputText ------------------------- */
@@ -114,7 +117,7 @@ h1 {
 	position: relative;
 }
 .half {
-	width: 48%;
+	width: 49%;
 	display: inline-block;
 }
 
@@ -124,17 +127,21 @@ label,
 	display: none;
 }
 input[type="text"] {
-	/* border: 1px solid hsl(0, 0%, 90%); */
 	border: none;
 	background-color: hsl(0, 0%, 97%);
 	width: 100%;
-	border-radius: 5px;
+	border-radius: 0.5rem;
+	padding: 2rem 1rem 0.6rem 1rem;
+	font-weight: bold;
+	/* try... */
+	transition: padding-top 0.5s;
 }
 
 .question {
-	position: relative;
-	top: 1.9em;
-	left: 0.4em;
+	font-size: 0.8rem;
+	position: absolute;
+	top: 1.8rem;
+	left: 1em;
 	line-height: 1.5rem;
 	pointer-events: none;
 	transition: line-height 0s, top 0s;
@@ -145,7 +152,7 @@ input[type="text"] {
 .focused .question,
 .filled .question {
 	top: 0em;
-	font-size: 0.5em;
+	/* font-size: 0.5em; */
 	/* text-align: right; */
 }
 /* show label on right after filling, to aid gradual collapse */
@@ -168,6 +175,7 @@ input[type="text"] {
 	border: none;
 	font-weight: bold;
 	border-bottom: 2px dotted hsl(0, 0%, 93%);
+	border-radius: 0;
 }
 .filled:not(.focused):hover input[type="text"] {
 	/* text-decoration: underline; */
@@ -184,16 +192,16 @@ input[type="text"] {
 .collapsed .filled:not(.focused):not(.hero) input[type="text"] {
 	font-weight: normal;
 	font-size: 0.7em;
-	padding: 0 0.4em;
+	padding: 0.4rem 0.4rem;
 	margin: 0;
 	width: fit-content;
 }
 .collapsed .filled:not(.focused).hero input[type="text"] {
-	padding: 0 0.4em;
+	padding: 0.4rem 0.4rem;
 	margin: 0;
 }
 .collapsed .filled:not(.focused) input[type="text"] {
-	border-bottom: none;
+	border-bottom: 2px solid hsl(0, 0%, 97%);
 }
 
 .postcode input {
@@ -223,7 +231,7 @@ fieldset.collapsed {
 	margin-bottom: 0.4rem;
 }
 fieldset.collapsed .question {
-	top: 0.3em;
+	top: 0.8rem;
 	line-height: 0rem;
 	transition: line-height 0.15s;
 }
@@ -232,10 +240,35 @@ fieldset.collapsed:hover .question {
 	line-height: 1rem;
 }
 fieldset.collapsed:hover .filled:not(.focused) input[type="text"] {
-	border-bottom: 2px dotted hsl(0, 0%, 67%);
-	border-radius: 0;
+	/* border-bottom: 2px dotted hsl(0, 0%, 67%); */
+	/* border-radius: 0; */
+}
+fieldset.collapsed:hover .filled:not(.focused) .question {
+	opacity: 0.01;
 }
 
 button.wide {
 	width: 100%;
+	margin-top: 2rem;
+	padding: 1.4rem;
+	border: 0px solid grey;
+	border-radius: 0.8rem;
+	color: white;
+	background-color: hsla(0, 0%, 5%, 100%);
+	border-bottom: 2px solid hsl(0, 0%, 87%);
+}
+.sectionTitle {
+	opacity: 1;
+	height: min-content;
+	transition: opacity 0.3s, height 0.3s;
+	overflow: hidden;
+}
+.collapsed .sectionTitle {
+	height: 0;
+}
+
+@media screen and (min-width: 400px) {
+	html {
+		font-size: 16px;
+	}
 }

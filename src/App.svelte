@@ -31,6 +31,7 @@
 	$: hideButton1 = 0;
 
 	let card1style, card2style, card3style;
+	let card1edit = "";
 	$: if (card1isFilled && hideButton1) {
 		card1style = "collapsed";
 	}
@@ -40,18 +41,28 @@
 	$: if (card3isFilled && hideButton3) {
 		card3style = "collapsed";
 	}
+	$: card1class = card1style + card1edit;
+
+	function handle() {
+		if (card1style === "collapsed") {
+			card1edit = " edit";
+		}
+	}
 </script>
 
 <main>
 	<div class="form">
-		<Sentence stage={2} {make} {model} {memory} />
+		<Sentence {make} {model} {memory} />
 
 		<!-- <InputSelectList /> -->
 
 		<fieldset
 			style="visibility:{showcard1 ? 'visible' : 'hidden'}"
-			class={card1style}
+			class={card1class}
+			on:click={() => handle()}
 		>
+			<div class="sectionTitle"><h3>About you</h3></div>
+
 			<InputText bind:value={firstname} {half} {hero} label="First name" />
 			<InputText bind:value={lastname} {half} {hero} label="Last name" />
 			<InputText bind:value={email} label="Email" format="email" />
@@ -63,14 +74,15 @@
 					hideButton1 = 1;
 					//mainStyle = "collapsed";
 				}}
-				class="wide">OKish</button
+				class="wide">OK, next</button
 			>
 		</fieldset>
 		<fieldset
 			style="visibility:{showcard2 ? 'visible' : 'hidden'}"
 			class={card2style}
 		>
-			<InputText bind:value={dob} label="Date of Birth" />
+			<div class="sectionTitle"><h3>A few more details</h3></div>
+			<InputText bind:value={dob} {hero} label="Date of Birth" />
 
 			<InputText bind:value={postcode} label="Postcode" format="postcode" />
 			<button
@@ -79,11 +91,11 @@
 					showcard3 = 1;
 					hideButton2 = 1;
 				}}
-				class="wide">OKish</button
+				class="wide">Done</button
 			>
 		</fieldset>
 
-		<fieldset
+		<!-- <fieldset
 			style="visibility:{showcard3 ? 'visible' : 'hidden'}"
 			class={card3style}
 		>
@@ -95,9 +107,9 @@
 					showcard2 = 1;
 					hideButton2 = 1;
 				}}
-				class="wide">OKish</button
+				class="wide">Next</button
 			>
-		</fieldset>
+		</fieldset> -->
 	</div>
 </main>
 
