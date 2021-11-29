@@ -135,6 +135,7 @@ input[type="text"] {
 	font-weight: bold;
 	/* try... */
 	transition: padding-top 0.5s;
+	font-size: 1.1rem;
 }
 
 .question {
@@ -258,7 +259,16 @@ button.wide {
 	border-bottom: 2px solid hsl(0, 0%, 87%);
 }
 .sectionTitle {
-	opacity: 1;
+	opacity: 0.3;
+	text-align: left;
+	padding-left: 1rem;
+	font-size: 0.6rem;
+	height: min-content;
+	transition: opacity 0.3s, height 0.3s;
+	overflow: hidden;
+}
+.sectionTitle h3 {
+	font-size: 0.8rem;
 	height: min-content;
 	transition: opacity 0.3s, height 0.3s;
 	overflow: hidden;
